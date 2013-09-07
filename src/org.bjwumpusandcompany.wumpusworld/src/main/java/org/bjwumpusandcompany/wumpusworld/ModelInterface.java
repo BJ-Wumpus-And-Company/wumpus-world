@@ -10,6 +10,6 @@ public interface ModelInterface {
 	public Percept getCurrentPercept();
 	public void setHunterAction(Action action);
 	
-	public Board getWorld();
+	public Square[][] getWorld();
 	public Hunter getHunter();
 }

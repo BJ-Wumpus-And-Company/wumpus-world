@@ -104,10 +104,6 @@ public class Board implements ModelInterface {
 		return size;
 	}
 	
-	public Square[][] getSquares() {
-		return squares.clone();
-	}
-	
 	public String toString() {
 		String output = "";
 		String delimiter = "-----------------------------";
@@ -179,13 +175,11 @@ public class Board implements ModelInterface {
 	@Override
 	public void setHunterAction(Action action) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public Board getWorld() {
-		// TODO Auto-generated method stub
-		return null;
+	public Square[][] getWorld() {
+		return squares.clone();
 	}
 
 	@Override

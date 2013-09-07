@@ -31,5 +31,7 @@ public class BoardTest extends TestCase {
     	Board board = new Board(new Size(4, 4, 1));
     	assertTrue(board.getSize().getX() == 4);
     	assertTrue(board.getSize().getY() == 4);
+    	
+    	//TODO (WPH) : Add tests for Wumpus and Pit percept checks
     }
 }
