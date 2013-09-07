@@ -6,8 +6,9 @@ package org.bjwumpusandcompany.wumpusworld;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main(String[] args)
     {
-        System.out.println( "Hello World!" );
+    	Board board = new Board(new Size(4, 4, 1));
+        System.out.println(board.toString());
     }
 }

@@ -12,6 +12,8 @@ public class Square {
 		this.pit    = pit;
 		this.gold   = gold;
 		this.wumpus = wumpus;
+		
+		this.percepts = new Percept(false, false, false, false, false);
 	}
 	
 	public Square() {

@@ -13,7 +13,7 @@ public class Board {
 	public Board(Size size) {
 		this.size = size;
 		
-		playerPosition.update(0, 0);
+		playerPosition = new Position(0, 0);
 		
 		squares = new Square[size.getY()][size.getX()];
 		
@@ -37,10 +37,10 @@ public class Board {
         squares[position.getX()][position.getY()].setWumpus();
 
         //Place Gold
-        position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
-		while (!(squares[position.getX()][position.getY()].isWumpus())) {
-			squares[position.getX()][position.getY()].setGold();
+		while (!squares[position.getX()][position.getY()].isWumpus()) {
+	        position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
 		}
+		squares[position.getX()][position.getY()].setGold();
 		
 		generateStaticPercepts();
 	}
@@ -83,7 +83,47 @@ public class Board {
 	}
 	
 	public String toString() {
-		String output = "TODO";
+		String output = "";
+		String delimiter = "------------------------------";
+		
+		for (int x = 0; x < squares.length; ++x) {
+			output += "\n";
+			output += delimiter;
+			output += "\n|";
+			for (int y = 0; y < squares[x].length; ++y) {
+				String cell = "";
+				if (squares[x][y].isGold()) {
+					cell += "G";
+				} else if (squares[x][y].isPit()) {
+					cell += "P";
+				} else if (squares[x][y].isWumpus()) {
+					cell += "W";
+				}
+				
+				if (squares[x][y].getPercepts().breeze) {
+					cell += "b";
+				}
+				
+				if (squares[x][y].getPercepts().stench) {
+					cell += "s";
+				}
+				
+				if (squares[x][y].getPercepts().glitter) {
+					cell += "g";
+				}
+				
+				// Pad to 6 chars
+				while (cell.length() < 6) {
+					cell += " ";
+				}
+				
+				output += cell + "|";
+			}
+		}
+		output += "\n";
+		output += delimiter;
+		output += "\n";
+		output += "\n";
 		
 		return output;
 	}
