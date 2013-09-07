@@ -9,6 +9,7 @@ public class Board implements ModelInterface {
 	private Size size;
 	private Square[][] squares; //TODO - Add Third Dimension
 	private Hunter hunter;
+	private GameState gameState;
 	
 	public Board(Size size) {
 		this.size = size;
@@ -115,7 +116,9 @@ public class Board implements ModelInterface {
 	
 	public String toString() {
 		String output = "";
-		String delimiter = "-----------------------------";
+		String delimiter = "-------";
+		
+		while (!(delimiter.length()*6 < size.getX()))
 		
 		for (int x = 0; x < squares.length; ++x) {
 			output += "\n";
@@ -183,7 +186,26 @@ public class Board implements ModelInterface {
 
 	@Override
 	public void setHunterAction(Action action) {
-		// TODO Auto-generated method stub
+		switch (action)
+		{
+		case Forward:
+			break;
+		case TurnLeft:
+			hunter.getPosition().rotateOrientationCounterClockwise();
+			break;
+		case TurnRight:
+			hunter.getPosition().rotateOrientationClockwise();
+			break;
+		case Grab:
+			break;
+		case Shoot:
+			break;
+		case Climb:
+			break;
+		default:
+			throw new IllegalArgumentException("setHunterAction: Unknown Action");
+				
+		}
 	}
 
 	@Override

@@ -1,9 +1,9 @@
 package org.bjwumpusandcompany.wumpusworld;
 
 public class Position {
-
-	private int x;
-	private int y;
+	
+	protected int x;
+	protected int y;
 	
 	public Position(int x, int y) {
 		this.x = x;

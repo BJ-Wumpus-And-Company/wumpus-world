@@ -1,13 +1,13 @@
 package org.bjwumpusandcompany.wumpusworld;
 
 public class Hunter {
-	private Position position;
+	private HunterPosition position;
 	
 	public Hunter() {
-		position = new Position(0, 0);
+		position = new HunterPosition(0, 0, HunterPosition.Orientation.South);
 	}	
 	
-	public Position getPosition() {
+	public HunterPosition getPosition() {
 		return position;
 	}
 	
