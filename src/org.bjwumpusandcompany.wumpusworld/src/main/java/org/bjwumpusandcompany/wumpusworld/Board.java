@@ -23,7 +23,9 @@ public class Board implements ModelInterface {
 				squares[x][y] = new Square(false, false, false);
 				
 				Random randPit = new Random();
-				if (randPit.nextDouble() <= 0.2) { //with 20%
+				if (randPit.nextDouble() <= 0.2 &&
+					!(x == hunter.getPosition().getX() &&
+					  y == hunter.getPosition().getY())) { //with 20%
 					squares[x][y] = new Square(true, false, false); //place pit
 				}
 			}
@@ -34,11 +36,18 @@ public class Board implements ModelInterface {
 
 		//Place Wumpus
         Position position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
+        while (position.getX() == hunter.getPosition().getX() &&
+			   position.getY() == hunter.getPosition().getY()) {
+        	position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
+        }
+        
         squares[position.getX()][position.getY()].setWumpus();
 
-        //Place Gold
+        //Place Gold - If square does not have a Wumpus, Pit or Hunter already
 		while (squares[position.getX()][position.getY()].isWumpus() ||
-			   squares[position.getX()][position.getY()].isPit()) {
+			   squares[position.getX()][position.getY()].isPit() ||
+			   (position.getX() == hunter.getPosition().getX() &&
+			    position.getY() == hunter.getPosition().getY())) {
 	        position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
 		}
 		squares[position.getX()][position.getY()].setGold();
