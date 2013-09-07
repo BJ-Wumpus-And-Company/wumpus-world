@@ -4,16 +4,16 @@ import java.util.Random;
 
 //import org.codehaus.jettison.json.JSONObject;
 
-public class Board {
+public class Board implements ModelInterface {
 
 	private Size size;
 	private Square[][] squares; //TODO - Add Third Dimension
-	private Position playerPosition;
+	private Hunter hunter;
 	
 	public Board(Size size) {
 		this.size = size;
 		
-		playerPosition = new Position(0, 0);
+		hunter = new Hunter();
 		
 		squares = new Square[size.getY()][size.getX()];
 		
@@ -22,8 +22,8 @@ public class Board {
 			for (int y = 0; y < squares[x].length; ++y) {
 				squares[x][y] = new Square(false, false, false);
 				
-				Random randPit = new Random(1);
-				if (randPit.nextDouble() <= 0.02) { //with 2%
+				Random randPit = new Random();
+				if (randPit.nextDouble() <= 0.2) { //with 20%
 					squares[x][y] = new Square(true, false, false); //place pit
 				}
 			}
@@ -37,7 +37,8 @@ public class Board {
         squares[position.getX()][position.getY()].setWumpus();
 
         //Place Gold
-		while (!squares[position.getX()][position.getY()].isWumpus()) {
+		while (squares[position.getX()][position.getY()].isWumpus() ||
+			   squares[position.getX()][position.getY()].isPit()) {
 	        position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
 		}
 		squares[position.getX()][position.getY()].setGold();
@@ -54,37 +55,62 @@ public class Board {
 	}
 	
 	private void generateStaticPercepts(Square square, Position position) {
-		square.getPercepts().glitter = square.isGold(); 
+		square.getPercepts().glitter = square.isGold();
 		
 		if (position.getX() > 0) {
-			squares[position.getX() - 1][position.getY()].getPercepts().stench = square.isWumpus();
-			squares[position.getX() - 1][position.getY()].getPercepts().breeze = square.isPit();
+			if (!squares[position.getX() - 1][position.getY()].getPercepts().stench) {
+				squares[position.getX() - 1][position.getY()].getPercepts().stench = square.isWumpus();
+			}
+			
+			if (!squares[position.getX() - 1][position.getY()].getPercepts().breeze) {
+				squares[position.getX() - 1][position.getY()].getPercepts().breeze = square.isPit();
+				
+			}
 		}
 		
 		if (position.getX() < size.getX() - 1) {
-			squares[position.getX() + 1][position.getY()].getPercepts().stench = square.isWumpus();
-			squares[position.getX() + 1][position.getY()].getPercepts().breeze = square.isPit();
+			if (!squares[position.getX() + 1][position.getY()].getPercepts().stench) {
+				squares[position.getX() + 1][position.getY()].getPercepts().stench = square.isWumpus();
+			}
+			
+			if (!squares[position.getX() + 1][position.getY()].getPercepts().breeze) {
+				squares[position.getX() + 1][position.getY()].getPercepts().breeze = square.isPit();				
+			}
 		}
 		
 		if (position.getY() > 0) {
-			squares[position.getX()][position.getY() - 1].getPercepts().stench = square.isWumpus();
-			squares[position.getX()][position.getY() - 1].getPercepts().breeze = square.isPit();
+			if (!squares[position.getX()][position.getY() - 1].getPercepts().stench) {
+				squares[position.getX()][position.getY() - 1].getPercepts().stench = square.isWumpus();				
+			}
+			
+			if (!squares[position.getX()][position.getY() - 1].getPercepts().breeze) {
+				squares[position.getX()][position.getY() - 1].getPercepts().breeze = square.isPit();
+				
+			}
 		}
 		
 		if (position.getY() < size.getY() - 1) {
-			squares[position.getX()][position.getY() + 1].getPercepts().stench = square.isWumpus();
-			squares[position.getX()][position.getY() + 1].getPercepts().breeze = square.isPit();
+			if (!squares[position.getX()][position.getY() + 1].getPercepts().stench) {
+				squares[position.getX()][position.getY() + 1].getPercepts().stench = square.isWumpus();				
+			}
+			
+			if (!squares[position.getX()][position.getY() + 1].getPercepts().breeze) {
+				squares[position.getX()][position.getY() + 1].getPercepts().breeze = square.isPit();				
+			}
 		}
 	}
 	
-	// Returns: true if successful
-	public boolean move(Position moveToPosition) {		
-		return false;
+	public Size getSize() {
+		return size;
+	}
+	
+	public Square[][] getSquares() {
+		return squares.clone();
 	}
 	
 	public String toString() {
 		String output = "";
-		String delimiter = "------------------------------";
+		String delimiter = "-----------------------------";
 		
 		for (int x = 0; x < squares.length; ++x) {
 			output += "\n";
@@ -112,6 +138,11 @@ public class Board {
 					cell += "g";
 				}
 				
+				if (x == hunter.getPosition().getX() &&
+					y == hunter.getPosition().getY()) {
+					cell += "H";
+				}
+				
 				// Pad to 6 chars
 				while (cell.length() < 6) {
 					cell += " ";
@@ -126,5 +157,40 @@ public class Board {
 		output += "\n";
 		
 		return output;
+	}
+
+	@Override
+	public void setGameState(GameState state) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public GameState getGameState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Percept getCurrentPercept() {
+		return squares[hunter.getPosition().getX()][hunter.getPosition().getY()].getPercepts();
+	}
+
+	@Override
+	public void setHunterAction(Action action) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Board getWorld() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Hunter getHunter() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
