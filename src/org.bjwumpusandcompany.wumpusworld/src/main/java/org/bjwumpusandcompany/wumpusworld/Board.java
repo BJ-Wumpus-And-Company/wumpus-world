@@ -182,7 +182,15 @@ public class Board implements ModelInterface {
 
 	@Override
 	public void setGameState(GameState state) {
-		// TODO Auto-generated method stub
+		if (state == GameState.Started) {
+			if (gameState != GameState.Initialize ||
+				state == GameState.Ended) {
+				System.out.println("setGameState(): Illegal State Transition Request, From: " + 
+								   gameState.name() + " To: " + state.name());
+			} else {
+				gameState = state;
+			}
+		}
 	}
 
 	@Override

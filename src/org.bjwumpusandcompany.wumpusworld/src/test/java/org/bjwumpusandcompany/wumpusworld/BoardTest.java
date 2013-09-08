@@ -223,4 +223,19 @@ public class BoardTest extends TestCase {
     		}    		
     	}
     }
+    
+    
+    /**
+     * testGameStateTransition()
+     */
+    public void testGameStateTransition()
+    {
+    	Board board = new Board(new Size(4, 4, 1));
+    	
+    	assertTrue(board.getGameState() == GameState.Initialize);
+    	
+    	board.setGameState(GameState.Started);
+    	
+    	assertTrue(board.getGameState() == GameState.Started);
+    }
 }
