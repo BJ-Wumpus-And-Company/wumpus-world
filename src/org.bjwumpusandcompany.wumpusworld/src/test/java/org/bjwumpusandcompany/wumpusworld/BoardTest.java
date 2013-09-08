@@ -2,6 +2,7 @@ package org.bjwumpusandcompany.wumpusworld;
 
 import org.bjwumpusandcompany.wumpusworld.HunterPosition.Orientation;
 import org.bjwumpusandcompany.wumpusworld.ModelInterface.Action;
+import org.bjwumpusandcompany.wumpusworld.ModelInterface.GameState;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -132,5 +133,81 @@ public class BoardTest extends TestCase {
     	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.West);
     	assertTrue(board.getHunter().getPosition().getX() == 1);
     	assertTrue(board.getHunter().getPosition().getY() == 0);
+    }
+    
+    /**
+     * testGameState()
+     * Iterate across board with hunter until we find a pit, verify game ends
+     * Iterate across board with hunter until we find a wumpus, verify game ends
+     */
+    public void testGameState()
+    {
+    	Board board = new Board(new Size(4, 4, 1));
+    	
+    	assertTrue(board.getGameState() != GameState.Ended);
+
+    	board.setHunterAction(Action.TurnLeft);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.East);
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+    	
+    	boolean foundPit = false;
+    	for (int x = 0; x < board.getSize().getX() && !foundPit; ++x) {
+    		for (int y = 0; y < board.getSize().getX(); ++y) {
+            	board.setHunterAction(Action.Forward);
+            	
+            	int hunterX = board.getHunter().getPosition().getX();
+            	int hunterY = board.getHunter().getPosition().getY();
+            	
+            	if (board.getWorld()[hunterX][hunterY].isPit()) {
+            		assertTrue(board.getGameState() == GameState.Ended);
+            		foundPit = true; //use foundPit to avoid outer loop
+            		break;
+            	}
+    		}
+    		
+    		if (x % 2 == 0) {
+            	board.setHunterAction(Action.TurnLeft);
+            	board.setHunterAction(Action.Forward);
+            	board.setHunterAction(Action.TurnLeft);
+    		} else {
+            	board.setHunterAction(Action.TurnRight);
+            	board.setHunterAction(Action.Forward);
+            	board.setHunterAction(Action.TurnRight);
+    		}    		
+    	}
+    	
+    	board = new Board(new Size(4, 4, 1));
+
+    	board.setHunterAction(Action.TurnLeft);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.East);
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+    	
+    	boolean foundWumpus = false;
+    	for (int x = 0; x < board.getSize().getX() && !foundWumpus; ++x) {
+    		for (int y = 0; y < board.getSize().getX(); ++y) {
+            	board.setHunterAction(Action.Forward);
+            	
+            	int hunterX = board.getHunter().getPosition().getX();
+            	int hunterY = board.getHunter().getPosition().getY();
+            	
+            	if (board.getWorld()[hunterX][hunterY].isWumpus()) {
+            		assertTrue(board.getGameState() == GameState.Ended);
+            		foundWumpus = true; //use foundPit to avoid outer loop
+            		break;
+            	}
+    		}
+    		
+    		if (x % 2 == 0) {
+            	board.setHunterAction(Action.TurnLeft);
+            	board.setHunterAction(Action.Forward);
+            	board.setHunterAction(Action.TurnLeft);
+    		} else {
+            	board.setHunterAction(Action.TurnRight);
+            	board.setHunterAction(Action.Forward);
+            	board.setHunterAction(Action.TurnRight);
+    		}    		
+    	}
     }
 }
