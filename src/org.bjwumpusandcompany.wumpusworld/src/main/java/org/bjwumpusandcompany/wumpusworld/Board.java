@@ -16,6 +16,8 @@ public class Board implements ModelInterface {
 		
 		hunter = new Hunter();
 		
+		gameState = GameState.Initialize;
+		
 		squares = new Square[size.getY()][size.getX()];
 		
 		// Initialize board
@@ -114,6 +116,17 @@ public class Board implements ModelInterface {
 		return size;
 	}
 	
+	public void checkForEndOfGame() {
+		int hunterX = hunter.getPosition().getX();
+		int hunterY = hunter.getPosition().getY();
+		
+		boolean endOfGame = squares[hunterX][hunterY].isPit() || 
+							squares[hunterX][hunterY].isWumpus();
+		if (endOfGame) {
+			gameState = GameState.Ended;
+		}
+	}
+	
 	public String toString() {
 		String output = "";
 		String delimiter = "-------";
@@ -170,13 +183,11 @@ public class Board implements ModelInterface {
 	@Override
 	public void setGameState(GameState state) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public GameState getGameState() {
-		// TODO Auto-generated method stub
-		return null;
+		return gameState;
 	}
 
 	@Override
@@ -186,26 +197,58 @@ public class Board implements ModelInterface {
 
 	@Override
 	public void setHunterAction(Action action) {
+		int hunterX = hunter.getPosition().getX();
+		int hunterY = hunter.getPosition().getY();
+		
 		switch (action)
 		{
 		case Forward:
+			switch (hunter.getPosition().getOrientation())
+			{
+			case North:
+				if (hunterY > 0) {
+					hunter.updatePosition(hunterX, hunterY - 1);
+				}
+				break;
+			case West:
+				if (hunterX > 0) {
+					hunter.updatePosition(hunterX - 1, hunterY);
+				}
+				break;
+			case South:
+				if (hunterY  < size.getY() - 1) {
+					hunter.updatePosition(hunterX, hunterY + 1);
+				}
+				break;
+			case East:
+				if (hunterX > size.getX() - 1) {
+					hunter.updatePosition(hunterX + 1, hunterY);
+				}
+				break;
+			default:
+				throw new IllegalArgumentException("setHuntAction: Unknown Orientation");
+			}
 			break;
 		case TurnLeft:
-			hunter.getPosition().rotateOrientationCounterClockwise();
+			hunter.rotateOrientationCounterClockwise();
 			break;
 		case TurnRight:
-			hunter.getPosition().rotateOrientationClockwise();
+			hunter.rotateOrientationClockwise();
 			break;
 		case Grab:
+			//TODO (WPH)
 			break;
 		case Shoot:
+			//TODO (WPH)
 			break;
 		case Climb:
+			//TODO (WPH)
 			break;
 		default:
 			throw new IllegalArgumentException("setHunterAction: Unknown Action");
-				
 		}
+		
+		checkForEndOfGame();
 	}
 
 	@Override
@@ -215,7 +258,6 @@ public class Board implements ModelInterface {
 
 	@Override
 	public Hunter getHunter() {
-		// TODO Auto-generated method stub
-		return null;
+		return hunter;
 	}
 }

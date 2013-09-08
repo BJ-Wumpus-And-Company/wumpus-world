@@ -6,11 +6,12 @@ public class HunterPosition extends Position {
     	North, West, South, East;
     	
         public Orientation successor() {
-                return values()[(ordinal() + 1) % values().length];
+        	return values()[(ordinal() + 1) % values().length];
         }
         
         public Orientation predeccessor() {
-            return values()[(ordinal() - 1) % values().length];
+        	// need this ternary statement to make the enums circular from right to left 
+            return values()[(this == North ? East.ordinal() : ordinal() - 1)];
         }
     };
 	
@@ -27,10 +28,10 @@ public class HunterPosition extends Position {
 	}
 	
 	public void rotateOrientationClockwise() {
-		orientation = orientation.successor();
+		orientation = orientation.predeccessor();
 	}
 	
 	public void rotateOrientationCounterClockwise() {
-		orientation = orientation.predeccessor();
+		orientation = orientation.successor();
 	}
 }

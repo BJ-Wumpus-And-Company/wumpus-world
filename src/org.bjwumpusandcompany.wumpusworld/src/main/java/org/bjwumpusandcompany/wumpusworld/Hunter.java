@@ -14,4 +14,12 @@ public class Hunter {
 	public void updatePosition(int x, int y) {
 		position.update(x, y);
 	}
+	
+	public void rotateOrientationClockwise() {
+		position.rotateOrientationClockwise();
+	}
+	
+	public void rotateOrientationCounterClockwise() {
+		position.rotateOrientationCounterClockwise();
+	}
 }
