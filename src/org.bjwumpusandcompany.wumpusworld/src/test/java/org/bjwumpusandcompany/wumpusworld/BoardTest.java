@@ -78,6 +78,59 @@ public class BoardTest extends TestCase {
 
     	board.setHunterAction(Action.TurnLeft);
     	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.South);
+    }
+    
+
+    /**
+     * testHunterForward()
+     * This tests forward motion (and left/right turns) without checking for game state
+     */
+    public void testHunterForward()
+    {
+    	Board board = new Board(new Size(4, 4, 1));
+
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.South);
     	
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.South);
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 1);
+
+    	board.setHunterAction(Action.TurnLeft);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.East);
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 1);
+
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.East);
+    	assertTrue(board.getHunter().getPosition().getX() == 1);
+    	assertTrue(board.getHunter().getPosition().getY() == 1);
+
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.East);
+    	assertTrue(board.getHunter().getPosition().getX() == 2);
+    	assertTrue(board.getHunter().getPosition().getY() == 1);
+
+    	board.setHunterAction(Action.TurnLeft);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.North);
+    	assertTrue(board.getHunter().getPosition().getX() == 2);
+    	assertTrue(board.getHunter().getPosition().getY() == 1);
+    	
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.North);
+    	assertTrue(board.getHunter().getPosition().getX() == 2);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+    	
+    	board.setHunterAction(Action.TurnLeft);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.West);
+    	assertTrue(board.getHunter().getPosition().getX() == 2);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.West);
+    	assertTrue(board.getHunter().getPosition().getX() == 1);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
     }
 }

@@ -221,7 +221,7 @@ public class Board implements ModelInterface {
 				}
 				break;
 			case East:
-				if (hunterX > size.getX() - 1) {
+				if (hunterX < size.getX() - 1) {
 					hunter.updatePosition(hunterX + 1, hunterY);
 				}
 				break;
