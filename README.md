@@ -9,17 +9,14 @@ Please reference the [AUTHORS](https://raw.github.com/BJ-Wumpus-And-Company/wump
 ### License
 Please reference the [LICENSE](https://raw.github.com/BJ-Wumpus-And-Company/wumpus-world/master/LICENSE) file.
 
+### TODO
+Please reference the [TODO](https://raw.github.com/BJ-Wumpus-And-Company/wumpus-world/master/TODO) file.
+
 ### Repository Sections
 This repository is broken into three main sections:
 
- * __doc/__ - Wherein we hope to explain how one might build, install, use, and develop against the Wumpus World.  Please reference the [doc/README.md](https://github.com/BJ-Wumpus-And-Company/wumpus-world/blob/master/doc/README.md) file.
- * __src/org.bjwumpusandcompany.wumpusworld__ - Which contains the core of Wumpus World.  Please reference the [src/org.bjwumpusandcompany.wumpusworld/README.md](https://github.com/BJ-Wumpus-And-Company/wumpus-world/blob/master/src/org.bjwumpusandcompany.wumpusworld/README.md) file.
- * __src/org.bjwumpusandcompany.hunter.keyboardcontrolled__ - Which contains a simple, manually (keyboard) controlled, hunter.  Please reference the [src/org.bjwumpusandcompany.hunter.keyboardcontrolled/README.md](https://github.com/BJ-Wumpus-And-Company/wumpus-world/blob/master/src/org.bjwumpusandcompany.hunter.keyboardcontrolled/README.md) file.
- 
- 
-## Planning Artifacts
+ * __doc/__ - Wherein we hope to explain how one might build, install, use, and develop against the Wumpus World.  
+ * __src/org.bjwumpusandcompany.wumpusworld__ - Which contains the core of Wumpus World.  
+ * __src/org.bjwumpusandcompany.hunter.keyboardcontrolled__ - Which contains a simple, manually (keyboard) controlled, hunter.  
 
- * [ROADMAP.md](https://github.com/BJ-Wumpus-And-Company/wumpus-world/blob/master/ROADMAP.md)
- * [BACKLOG.md](https://github.com/BJ-Wumpus-And-Company/wumpus-world/blob/master/ROADMAP.md)
- * [TASKS.md](https://github.com/BJ-Wumpus-And-Company/wumpus-world/blob/master/ROADMAP.md)
  
