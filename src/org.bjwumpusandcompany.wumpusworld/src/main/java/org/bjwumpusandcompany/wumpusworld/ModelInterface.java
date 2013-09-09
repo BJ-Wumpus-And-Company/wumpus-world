@@ -24,18 +24,21 @@
 
 package org.bjwumpusandcompany.wumpusworld;
 
-import org.bjwumpusandcompany.wumpusworld.common.Size;
-import org.bjwumpusandcompany.wumpusworld.model.Model;
+import org.bjwumpusandcompany.wumpusworld.common.Hunter;
+import org.bjwumpusandcompany.wumpusworld.common.Percept;
+import org.bjwumpusandcompany.wumpusworld.common.Square;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main(String[] args)
-    {
-    	Model board = new Model(new Size(8, 8, 1));
-        System.out.println(board.toString());
-    }
+
+public interface ModelInterface {
+	public enum GameState {Initialize, Started, Ended};
+	public enum Action {Forward, TurnLeft, TurnRight, Grab, Shoot, Climb};
+	
+	public void setGameState(GameState state); //TODO add GameState 
+	public GameState getGameState();
+	
+	public Percept getCurrentPercept();
+	public void setHunterAction(Action action);
+	
+	public Square[][] getWorld();
+	public Hunter getHunter();
 }

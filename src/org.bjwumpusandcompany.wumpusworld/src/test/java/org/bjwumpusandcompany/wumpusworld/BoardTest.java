@@ -24,11 +24,11 @@
 
 package org.bjwumpusandcompany.wumpusworld;
 
-import org.bjwumpusandcompany.wumpusworld.common.Board;
+import org.bjwumpusandcompany.wumpusworld.ModelInterface.Action;
+import org.bjwumpusandcompany.wumpusworld.ModelInterface.GameState;
 import org.bjwumpusandcompany.wumpusworld.common.Size;
 import org.bjwumpusandcompany.wumpusworld.common.HunterPosition.Orientation;
-import org.bjwumpusandcompany.wumpusworld.model.ModelInterface.Action;
-import org.bjwumpusandcompany.wumpusworld.model.ModelInterface.GameState;
+import org.bjwumpusandcompany.wumpusworld.model.Model;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -59,7 +59,7 @@ public class BoardTest extends TestCase {
     public void testInitialBoard()
     {
 		System.out.println("Running: testInitialBoard()");
-    	Board board = new Board(new Size(4, 4, 1));
+    	Model board = new Model(new Size(4, 4, 1));
     	assertTrue(board.getSize().getX() == 4);
     	assertTrue(board.getSize().getY() == 4);
     	
@@ -79,7 +79,7 @@ public class BoardTest extends TestCase {
     public void testHunterRotation()
     {
 		System.out.println("Running: testHunterRotation()");
-    	Board board = new Board(new Size(4, 4, 1));
+    	Model board = new Model(new Size(4, 4, 1));
     	
     	// check initial orientation is south
     	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.South);
@@ -117,7 +117,7 @@ public class BoardTest extends TestCase {
     public void testHunterForward()
     {
 		System.out.println("Running: testHunterForward()");
-    	Board board = new Board(new Size(4, 4, 1));
+    	Model board = new Model(new Size(4, 4, 1));
 
     	assertTrue(board.getHunter().getPosition().getX() == 0);
     	assertTrue(board.getHunter().getPosition().getY() == 0);
@@ -174,7 +174,7 @@ public class BoardTest extends TestCase {
 		System.out.println("Running: testGameStateEnded()");
 		
     	//Look For Pit
-    	Board board = new Board(new Size(4, 4, 1));
+    	Model board = new Model(new Size(4, 4, 1));
     	
     	assertTrue(board.getGameState() != GameState.Ended);
 
@@ -212,7 +212,7 @@ public class BoardTest extends TestCase {
     	}
     	
     	//Look For Wumpus
-    	board = new Board(new Size(4, 4, 1));
+    	board = new Model(new Size(4, 4, 1));
     	
     	assertTrue(board.getGameState() != GameState.Ended);
 
@@ -256,7 +256,7 @@ public class BoardTest extends TestCase {
      */
     public void testGameStateTransition()
     {
-    	Board board = new Board(new Size(4, 4, 1));
+    	Model board = new Model(new Size(4, 4, 1));
     	
     	assertTrue(board.getGameState() == GameState.Initialize);
     	

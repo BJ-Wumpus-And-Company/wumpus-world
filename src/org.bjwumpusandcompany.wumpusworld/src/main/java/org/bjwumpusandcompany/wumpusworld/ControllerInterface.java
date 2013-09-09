@@ -24,18 +24,12 @@
 
 package org.bjwumpusandcompany.wumpusworld;
 
-import org.bjwumpusandcompany.wumpusworld.common.Size;
-import org.bjwumpusandcompany.wumpusworld.model.Model;
-
 /**
- * Hello world!
+ *
+ * 
+ * @author Jonathan McCluskey
  *
  */
-public class App 
-{
-    public static void main(String[] args)
-    {
-    	Model board = new Model(new Size(8, 8, 1));
-        System.out.println(board.toString());
-    }
+public interface ControllerInterface {
+
 }

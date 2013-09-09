@@ -22,20 +22,16 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.controller;
 
-import org.bjwumpusandcompany.wumpusworld.common.Size;
-import org.bjwumpusandcompany.wumpusworld.model.Model;
+import org.bjwumpusandcompany.wumpusworld.ControllerInterface;
 
 /**
- * Hello world!
+ *
+ * 
+ * @author Jonathan McCluskey
  *
  */
-public class App 
-{
-    public static void main(String[] args)
-    {
-    	Model board = new Model(new Size(8, 8, 1));
-        System.out.println(board.toString());
-    }
+public class AdminController implements ControllerInterface {
+
 }

@@ -22,24 +22,33 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld.common;
+package org.bjwumpusandcompany.wumpusworld.model;
 
 import java.util.Random;
 
-import org.bjwumpusandcompany.wumpusworld.model.ModelInterface;
-
-
+import org.bjwumpusandcompany.wumpusworld.ModelInterface;
+import org.bjwumpusandcompany.wumpusworld.common.Hunter;
+import org.bjwumpusandcompany.wumpusworld.common.Percept;
+import org.bjwumpusandcompany.wumpusworld.common.Position;
+import org.bjwumpusandcompany.wumpusworld.common.Size;
+import org.bjwumpusandcompany.wumpusworld.common.Square;
 
 //import org.codehaus.jettison.json.JSONObject;
 
-public class Board implements ModelInterface {
+/**
+*
+* 
+* @author William Harding
+*
+*/
+public class Model implements ModelInterface {
 
 	private Size size;
 	private Square[][] squares; //TODO - Add Third Dimension
 	private Hunter hunter;
 	private GameState gameState;
 	
-	public Board(Size size) {
+	public Model(Size size) {
 		this.size = size;
 		
 		hunter = new Hunter();

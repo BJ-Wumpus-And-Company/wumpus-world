@@ -24,7 +24,12 @@
 
 package org.bjwumpusandcompany.wumpusworld.common;
 
-
+/**
+*
+* 
+* @author William Harding
+*
+*/
 public class Square {
 	
 	private boolean pit    = false;

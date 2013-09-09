@@ -24,6 +24,12 @@
 
 package org.bjwumpusandcompany.wumpusworld.common;
 
+/**
+*
+* 
+* @author William Harding
+*
+*/
 public class Size {
 	private int x;
 	private int y;

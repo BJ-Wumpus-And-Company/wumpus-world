@@ -24,7 +24,12 @@
 
 package org.bjwumpusandcompany.wumpusworld.common;
 
-
+/**
+*
+* 
+* @author William Harding
+*
+*/
 public class Hunter {
 	private HunterPosition position;
 	
