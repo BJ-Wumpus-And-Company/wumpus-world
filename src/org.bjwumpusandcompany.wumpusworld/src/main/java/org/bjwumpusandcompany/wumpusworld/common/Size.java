@@ -22,24 +22,28 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.common;
 
-public class Percept {
+public class Size {
+	private int x;
+	private int y;
+	private int z;
 
-	public boolean stench  = false;
-	public boolean breeze  = false;
-	public boolean glitter = false;
-	public boolean bump    = false;
-	public boolean scream  = false;
-	
-	public Percept(boolean stench, boolean breeze, boolean glitter, boolean bump, boolean scream) {
-		this.stench  = stench;
-		this.breeze  = breeze;
-		this.glitter = glitter;
-		this.bump 	 = bump;
-		this.scream  = scream;
+	public Size(int x, int y, int z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 	
-	public Percept() {
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public int getZ() {
+		return z;
 	}
 }

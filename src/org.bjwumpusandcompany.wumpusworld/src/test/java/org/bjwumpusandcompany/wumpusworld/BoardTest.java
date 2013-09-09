@@ -24,9 +24,11 @@
 
 package org.bjwumpusandcompany.wumpusworld;
 
-import org.bjwumpusandcompany.wumpusworld.HunterPosition.Orientation;
-import org.bjwumpusandcompany.wumpusworld.ModelInterface.Action;
-import org.bjwumpusandcompany.wumpusworld.ModelInterface.GameState;
+import org.bjwumpusandcompany.wumpusworld.common.Board;
+import org.bjwumpusandcompany.wumpusworld.common.Size;
+import org.bjwumpusandcompany.wumpusworld.common.HunterPosition.Orientation;
+import org.bjwumpusandcompany.wumpusworld.model.ModelInterface.Action;
+import org.bjwumpusandcompany.wumpusworld.model.ModelInterface.GameState;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

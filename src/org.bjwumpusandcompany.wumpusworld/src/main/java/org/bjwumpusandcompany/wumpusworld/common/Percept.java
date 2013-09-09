@@ -22,28 +22,24 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.common;
 
-public class Hunter {
-	private HunterPosition position;
+public class Percept {
+
+	public boolean stench  = false;
+	public boolean breeze  = false;
+	public boolean glitter = false;
+	public boolean bump    = false;
+	public boolean scream  = false;
 	
-	public Hunter() {
-		position = new HunterPosition(0, 0, HunterPosition.Orientation.South);
-	}	
-	
-	public HunterPosition getPosition() {
-		return position;
+	public Percept(boolean stench, boolean breeze, boolean glitter, boolean bump, boolean scream) {
+		this.stench  = stench;
+		this.breeze  = breeze;
+		this.glitter = glitter;
+		this.bump 	 = bump;
+		this.scream  = scream;
 	}
 	
-	public void updatePosition(int x, int y) {
-		position.update(x, y);
-	}
-	
-	public void rotateOrientationClockwise() {
-		position.rotateOrientationClockwise();
-	}
-	
-	public void rotateOrientationCounterClockwise() {
-		position.rotateOrientationCounterClockwise();
+	public Percept() {
 	}
 }

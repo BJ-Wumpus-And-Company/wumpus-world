@@ -24,6 +24,9 @@
 
 package org.bjwumpusandcompany.wumpusworld;
 
+import org.bjwumpusandcompany.wumpusworld.common.Board;
+import org.bjwumpusandcompany.wumpusworld.common.Size;
+
 /**
  * Hello world!
  *

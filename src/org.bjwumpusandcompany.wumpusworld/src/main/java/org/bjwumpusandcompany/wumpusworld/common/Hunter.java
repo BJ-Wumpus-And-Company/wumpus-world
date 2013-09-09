@@ -22,19 +22,29 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.common;
 
 
-public interface ModelInterface {
-	enum GameState {Initialize, Started, Ended};
-	enum Action {Forward, TurnLeft, TurnRight, Grab, Shoot, Climb};
+public class Hunter {
+	private HunterPosition position;
 	
-	public void setGameState(GameState state); //TODO add GameState 
-	public GameState getGameState();
+	public Hunter() {
+		position = new HunterPosition(0, 0, HunterPosition.Orientation.South);
+	}	
 	
-	public Percept getCurrentPercept();
-	public void setHunterAction(Action action);
+	public HunterPosition getPosition() {
+		return position;
+	}
 	
-	public Square[][] getWorld();
-	public Hunter getHunter();
+	public void updatePosition(int x, int y) {
+		position.update(x, y);
+	}
+	
+	public void rotateOrientationClockwise() {
+		position.rotateOrientationClockwise();
+	}
+	
+	public void rotateOrientationCounterClockwise() {
+		position.rotateOrientationCounterClockwise();
+	}
 }

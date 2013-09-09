@@ -22,56 +22,28 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.common;
 
-public class Square {
+public class Position {
 	
-	private boolean pit    = false;
-	private boolean gold   = false;
-	private boolean wumpus = false;
+	protected int x;
+	protected int y;
 	
-	private Percept percepts;
-	
-	public Square(boolean pit, boolean gold, boolean wumpus) {
-		this.pit    = pit;
-		this.gold   = gold;
-		this.wumpus = wumpus;
-		
-		this.percepts = new Percept(false, false, false, false, false);
+	public Position(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 	
-	public Square() {
+	public int getX() {
+		return x;
 	}
 	
-	public boolean isPit() {
-		return pit;
+	public int getY() {
+		return y;
 	}
 	
-	public boolean isGold() {
-		return gold;
-	}
-	
-	public boolean isWumpus() {
-		return wumpus;
-	}
-	
-	public void setWumpus() {
-		wumpus = true;
-	}
-	
-	public void setGold() {
-		gold = true;
-	}
-	
-	public Percept getPercepts() {
-		return percepts;
-	}
-	
-	public void setPercept(Percept percepts) {
-		this.percepts = percepts;
-	}
-	
-	public String toString() {
-		return "Square:TODO";
+	public void update(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 }

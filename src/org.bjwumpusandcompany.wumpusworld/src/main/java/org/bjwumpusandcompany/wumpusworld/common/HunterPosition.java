@@ -22,7 +22,8 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.common;
+
 
 public class HunterPosition extends Position {
 	

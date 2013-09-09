@@ -22,28 +22,23 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld;
+package org.bjwumpusandcompany.wumpusworld.model;
 
-public class Size {
-	private int x;
-	private int y;
-	private int z;
+import org.bjwumpusandcompany.wumpusworld.common.Hunter;
+import org.bjwumpusandcompany.wumpusworld.common.Percept;
+import org.bjwumpusandcompany.wumpusworld.common.Square;
 
-	public Size(int x, int y, int z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
+
+public interface ModelInterface {
+	enum GameState {Initialize, Started, Ended};
+	enum Action {Forward, TurnLeft, TurnRight, Grab, Shoot, Climb};
 	
-	public int getX() {
-		return x;
-	}
+	public void setGameState(GameState state); //TODO add GameState 
+	public GameState getGameState();
 	
-	public int getY() {
-		return y;
-	}
+	public Percept getCurrentPercept();
+	public void setHunterAction(Action action);
 	
-	public int getZ() {
-		return z;
-	}
+	public Square[][] getWorld();
+	public Hunter getHunter();
 }
