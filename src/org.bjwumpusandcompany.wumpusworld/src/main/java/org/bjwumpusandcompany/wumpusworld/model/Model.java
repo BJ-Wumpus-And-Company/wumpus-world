@@ -32,6 +32,7 @@ import org.bjwumpusandcompany.wumpusworld.common.Percept;
 import org.bjwumpusandcompany.wumpusworld.common.Position;
 import org.bjwumpusandcompany.wumpusworld.common.Size;
 import org.bjwumpusandcompany.wumpusworld.common.Square;
+import org.bjwumpusandcompany.wumpusworld.common.observer.AbstractSubject;
 
 //import org.codehaus.jettison.json.JSONObject;
 
@@ -41,7 +42,7 @@ import org.bjwumpusandcompany.wumpusworld.common.Square;
 * @author William Harding
 *
 */
-public class Model implements ModelInterface {
+public class Model extends AbstractSubject<ModelInterface> implements ModelInterface {
 
 	private Size size;
 	private Square[][] squares; //TODO - Add Third Dimension

@@ -33,5 +33,5 @@ package org.bjwumpusandcompany.wumpusworld.common.observer;
 public interface SubjectInterface<T> {
 	public void registerObserver(ObserverInterface<T> observer);
 	public void removeObserver(ObserverInterface<T> observer);
-	public void notifyObservers();
+	public void notifyObservers(T subjectData);
 }

@@ -36,11 +36,6 @@ import java.util.List;
 public class AbstractSubject<T> implements SubjectInterface<T> {
 
 	private List<ObserverInterface<T>> observers = new ArrayList<ObserverInterface<T>>();
-	private T subjectData;
-	
-	public AbstractSubject(T subjectData) {
-		this.subjectData = subjectData;
-	}
 	
 	/* (non-Javadoc)
 	 * @see org.bjwumpusandcompany.wumpusworld.common.observer.SubjectInterface#registerObserver(org.bjwumpusandcompany.wumpusworld.common.observer.ObserverInterface)
@@ -65,7 +60,7 @@ public class AbstractSubject<T> implements SubjectInterface<T> {
 	 * @see org.bjwumpusandcompany.wumpusworld.common.observer.SubjectInterface#notifyObservers()
 	 */
 	@Override
-	public void notifyObservers() {
+	public void notifyObservers(T subjectData) {
 		for(ObserverInterface<T> observer : observers) {
 			observer.update(subjectData);
 		}
