@@ -22,10 +22,7 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld.view;
-
-import org.bjwumpusandcompany.wumpusworld.ModelInterface;
-import org.bjwumpusandcompany.wumpusworld.common.observer.AbstractObserver;
+package org.bjwumpusandcompany.wumpusworld.common.observer;
 
 /**
  *
@@ -33,6 +30,12 @@ import org.bjwumpusandcompany.wumpusworld.common.observer.AbstractObserver;
  * @author Jonathan McCluskey
  *
  */
-public class AdminView extends AbstractObserver<ModelInterface>  {
+public interface ObserverInterface<T> {
+	
+	/**
+	 * Standard Observer Pattern update method
+	 * @param t
+	 */
+	public void update(T t);
 
 }

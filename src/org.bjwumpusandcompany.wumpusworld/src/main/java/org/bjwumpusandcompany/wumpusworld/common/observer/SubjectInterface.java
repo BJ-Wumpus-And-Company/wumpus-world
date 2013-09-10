@@ -22,10 +22,7 @@
  * DEALINGS IN THE SOFTWARE. 
  */
 
-package org.bjwumpusandcompany.wumpusworld.view;
-
-import org.bjwumpusandcompany.wumpusworld.ModelInterface;
-import org.bjwumpusandcompany.wumpusworld.common.observer.AbstractObserver;
+package org.bjwumpusandcompany.wumpusworld.common.observer;
 
 /**
  *
@@ -33,6 +30,8 @@ import org.bjwumpusandcompany.wumpusworld.common.observer.AbstractObserver;
  * @author Jonathan McCluskey
  *
  */
-public class AdminView extends AbstractObserver<ModelInterface>  {
-
+public interface SubjectInterface<T> {
+	public void registerObserver(ObserverInterface<T> observer);
+	public void removeObserver(ObserverInterface<T> observer);
+	public void notifyObservers();
 }

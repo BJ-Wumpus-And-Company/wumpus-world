@@ -24,12 +24,15 @@
 
 package org.bjwumpusandcompany.wumpusworld.view;
 
+import org.bjwumpusandcompany.wumpusworld.ModelInterface;
+import org.bjwumpusandcompany.wumpusworld.common.observer.AbstractObserver;
+
 /**
  *
  * 
  * @author Jonathan McCluskey
  *
  */
-public class HunterView {
+public class HunterView extends AbstractObserver<ModelInterface>  {
 
 }
