@@ -229,6 +229,8 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 				gameState = state;
 			}
 		}
+		
+		notifyObservers(this);
 	}
 
 	@Override
@@ -238,7 +240,15 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 
 	@Override
 	public Percept getCurrentPercept() {
-		return squares[hunter.getPosition().getX()][hunter.getPosition().getY()].getPercepts();
+		int hunterX = hunter.getPosition().getX();
+		int hunterY = hunter.getPosition().getY();
+		
+		Percept currentPercept = squares[hunterX][hunterY].getPercepts();
+		
+		//TODO (WPH) : How do we make the bump dynamic?
+        squares[hunterX][hunterY].getPercepts().bump = false;
+		
+        return currentPercept;
 	}
 
 	@Override
@@ -254,21 +264,29 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			case North:
 				if (hunterY > 0) {
 					hunter.updatePosition(hunterX, hunterY - 1);
+				} else {
+					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			case West:
 				if (hunterX > 0) {
 					hunter.updatePosition(hunterX - 1, hunterY);
+				} else {
+					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			case South:
 				if (hunterY  < size.getY() - 1) {
 					hunter.updatePosition(hunterX, hunterY + 1);
+				} else {
+					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			case East:
 				if (hunterX < size.getX() - 1) {
 					hunter.updatePosition(hunterX + 1, hunterY);
+				} else {
+					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			default:
@@ -295,6 +313,8 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		}
 		
 		checkForEndOfGame();
+
+		notifyObservers(this);
 	}
 
 	@Override
