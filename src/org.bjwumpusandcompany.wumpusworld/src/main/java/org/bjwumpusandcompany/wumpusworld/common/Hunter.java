@@ -31,25 +31,44 @@ package org.bjwumpusandcompany.wumpusworld.common;
 *
 */
 public class Hunter {
+	
 	private HunterPosition position;
+	private Integer numberOfArrows;
+	private Percept currentPercept;
 	
 	public Hunter() {
 		position = new HunterPosition(0, 0, HunterPosition.Orientation.South);
+		numberOfArrows = 1;
+		currentPercept = new Percept();
 	}	
 	
 	public HunterPosition getPosition() {
 		return position;
 	}
 	
-	public void updatePosition(int x, int y) {
-		position.update(x, y);
+//	public void updatePosition(int x, int y) {
+//		position.update(x, y);
+//	}
+//	
+//	public void rotateOrientationClockwise() {
+//		position.rotateOrientationClockwise();
+//	}
+//	
+//	public void rotateOrientationCounterClockwise() {
+//		position.rotateOrientationCounterClockwise();
+//	}
+	
+	public Integer getNumberOfArrows() {
+		return numberOfArrows;
 	}
 	
-	public void rotateOrientationClockwise() {
-		position.rotateOrientationClockwise();
+	public void decrementNumberOfArrows() {
+		if (numberOfArrows > 0) { 
+			numberOfArrows--;
+		}
 	}
 	
-	public void rotateOrientationCounterClockwise() {
-		position.rotateOrientationCounterClockwise();
+	public Percept getCurrentPercept() {
+		return currentPercept;
 	}
 }
