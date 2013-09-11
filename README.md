@@ -10,7 +10,7 @@ Please reference the [AUTHORS](https://raw.github.com/BJ-Wumpus-And-Company/wump
 Please reference the [LICENSE](https://raw.github.com/BJ-Wumpus-And-Company/wumpus-world/master/LICENSE) file.
 
 ### Planning
-Please reference our Trello board: [B.J. Wumpus & Company](https://trello.com/bjwumpuscompany) file.
+Please reference our Trello board: [B.J. Wumpus & Company](https://trello.com/bjwumpuscompany)
 
 ### Repository Sections
 This repository is broken into three main sections:
