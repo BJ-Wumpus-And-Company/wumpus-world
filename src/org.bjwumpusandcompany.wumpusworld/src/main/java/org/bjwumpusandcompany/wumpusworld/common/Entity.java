@@ -14,8 +14,10 @@ public abstract class Entity implements EntityInterface {
 	}
 		
 	protected boolean isNeighbor(Position squarePos) {
-		return Math.abs(position.getX() - squarePos.getX()) == 1 &&
-		       Math.abs(position.getY() - squarePos.getY()) == 1;
+		return ((Math.abs(position.getX() - squarePos.getX()) == 1 &&
+		       (position.getY()) == squarePos.getY()) ||
+		       (Math.abs(position.getY() - squarePos.getY()) == 1 &&
+		       (position.getX() == squarePos.getX())));
 	}
 	 
 //	protected boolean checkBounds(Position position, Size size) {

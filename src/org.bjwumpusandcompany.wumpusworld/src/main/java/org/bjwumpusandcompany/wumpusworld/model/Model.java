@@ -126,6 +126,10 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			if (entity instanceof PitEntity) {
 				sameLocation = entity.getPosition().getX() == position.getX() &&
 							   entity.getPosition().getY() == position.getY();
+				
+				if (sameLocation) {
+					break;
+				}
 			}
 		}
 		
@@ -138,6 +142,10 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			if (entity instanceof GoldEntity) {
 				sameLocation = entity.getPosition().getX() == position.getX() &&
 							   entity.getPosition().getY() == position.getY();
+				
+				if (sameLocation) {
+					break;
+				}
 			}
 		}
 		

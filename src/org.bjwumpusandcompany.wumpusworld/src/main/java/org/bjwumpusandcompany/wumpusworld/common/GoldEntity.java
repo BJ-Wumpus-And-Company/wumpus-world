@@ -8,7 +8,7 @@ public class GoldEntity extends Entity {
 
 	@Override
 	protected void handleSquarePercepts(Square square, Position squarePos, Size size) {
-		if (isNeighbor(squarePos)) {
+		if (squarePos.getX() == position.getX() && squarePos.getY() == position.getY())	{
 			square.getPercepts().glitter = true;
 		}
 	}
