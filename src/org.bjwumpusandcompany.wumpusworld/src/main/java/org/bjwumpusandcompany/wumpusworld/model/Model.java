@@ -223,9 +223,6 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		
 		Percept currentPercept = squares[hunterX][hunterY].getPercepts();
 		
-		//TODO (WPH) : How do we make the bump dynamic?
-        squares[hunterX][hunterY].getPercepts().bump = false;
-		
         return currentPercept;
 	}
 
