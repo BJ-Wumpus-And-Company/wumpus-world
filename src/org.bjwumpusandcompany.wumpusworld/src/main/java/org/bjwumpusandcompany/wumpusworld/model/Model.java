@@ -243,28 +243,28 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 				if (hunterY > 0) {
 					hunter.getPosition().update(hunterX, hunterY - 1);
 				} else {
-					squares[hunterX][hunterY].getPercepts().bump = true;
+					hunter.hitTheWall();
 				}
 				break;
 			case West:
 				if (hunterX > 0) {
 					hunter.getPosition().update(hunterX - 1, hunterY);
 				} else {
-					squares[hunterX][hunterY].getPercepts().bump = true;
+					hunter.hitTheWall();
 				}
 				break;
 			case South:
 				if (hunterY  < size.getY() - 1) {
 					hunter.getPosition().update(hunterX, hunterY + 1);
 				} else {
-					squares[hunterX][hunterY].getPercepts().bump = true;
+					hunter.hitTheWall();
 				}
 				break;
 			case East:
 				if (hunterX < size.getX() - 1) {
 					hunter.getPosition().update(hunterX + 1, hunterY);
 				} else {
-					squares[hunterX][hunterY].getPercepts().bump = true;
+					hunter.hitTheWall();
 				}
 				break;
 			default:

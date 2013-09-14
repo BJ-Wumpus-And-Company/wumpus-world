@@ -28,6 +28,7 @@ public class WumpusEntity extends Entity {
 			square.getPercepts().scream = true;			
 		} else {
 			square.getPercepts().scream = false;
+			screamFlag = false;
 		}
 	}
 

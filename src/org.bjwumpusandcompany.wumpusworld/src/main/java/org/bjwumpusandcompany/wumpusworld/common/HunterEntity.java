@@ -6,18 +6,22 @@ public class HunterEntity extends Entity {
 	
 	private Integer  numberOfArrows;
 	private Percept  currentPercept;
+	private boolean  bumpFlag;
 	
 	public HunterEntity() {
 		super();
-		position = new Position(0, 0, Orientation.South);
-		numberOfArrows = 1;
-		currentPercept = new Percept();
+		initialize();
 	}	
 	
 	HunterEntity(int x, int y) {
 		super(x, y);
+		initialize();
+	}
+	
+	private void initialize() {
 		position = new Position(0, 0, Orientation.South);
-		numberOfArrows = 1;
+		numberOfArrows = 1;		
+		currentPercept = new Percept();
 	}
 	
 	public Integer getNumberOfArrows() {
@@ -34,8 +38,20 @@ public class HunterEntity extends Entity {
 		return currentPercept;
 	}
 	
+	public void hitTheWall() {
+		bumpFlag = true;
+	}
+	
 	@Override
 	protected void handleSquarePercepts(Square square, Position squarePos, Size size) {
+
+		// If bumpFlag is set and we weren't bumping last turn
+		if (bumpFlag && !square.getPercepts().bump) {
+			square.getPercepts().bump = true;			
+		} else {
+			square.getPercepts().bump = false;
+			bumpFlag = false;
+		}
 	}
 
 }
