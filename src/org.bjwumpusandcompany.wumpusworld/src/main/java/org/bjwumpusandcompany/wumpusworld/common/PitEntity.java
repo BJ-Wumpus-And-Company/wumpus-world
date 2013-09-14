@@ -2,7 +2,7 @@ package org.bjwumpusandcompany.wumpusworld.common;
 
 public class PitEntity extends Entity {
 
-	PitEntity(int x, int y) {
+	public PitEntity(int x, int y) {
 		super(x, y);
 	}
 

@@ -2,7 +2,7 @@ package org.bjwumpusandcompany.wumpusworld.common;
 
 public class WumpusEntity extends Entity {
 
-	WumpusEntity(int x, int y) {
+	public WumpusEntity(int x, int y) {
 		super(x, y);
 	}
 

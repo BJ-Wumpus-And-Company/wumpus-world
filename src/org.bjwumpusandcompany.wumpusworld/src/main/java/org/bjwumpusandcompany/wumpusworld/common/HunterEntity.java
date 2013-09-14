@@ -7,7 +7,7 @@ public class HunterEntity extends Entity {
 	private Integer  numberOfArrows;
 	private Percept  currentPercept;
 	
-	HunterEntity() {
+	public HunterEntity() {
 		super();
 		position = new Position(0, 0, Orientation.South);
 		numberOfArrows = 1;
