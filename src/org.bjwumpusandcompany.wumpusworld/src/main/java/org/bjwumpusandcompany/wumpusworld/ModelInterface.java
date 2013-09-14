@@ -24,7 +24,7 @@
 
 package org.bjwumpusandcompany.wumpusworld;
 
-import org.bjwumpusandcompany.wumpusworld.common.Hunter;
+import org.bjwumpusandcompany.wumpusworld.common.HunterEntity;
 import org.bjwumpusandcompany.wumpusworld.common.Percept;
 import org.bjwumpusandcompany.wumpusworld.common.Square;
 
@@ -40,5 +40,5 @@ public interface ModelInterface {
 	public void setHunterAction(Action action);
 	
 	public Square[][] getWorld();
-	public Hunter getHunter();
+	public HunterEntity getHunter();
 }

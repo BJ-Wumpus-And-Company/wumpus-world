@@ -31,7 +31,6 @@ import java.util.Random;
 import org.bjwumpusandcompany.wumpusworld.EntityInterface;
 import org.bjwumpusandcompany.wumpusworld.ModelInterface;
 import org.bjwumpusandcompany.wumpusworld.common.GoldEntity;
-import org.bjwumpusandcompany.wumpusworld.common.Hunter;
 import org.bjwumpusandcompany.wumpusworld.common.HunterEntity;
 import org.bjwumpusandcompany.wumpusworld.common.Percept;
 import org.bjwumpusandcompany.wumpusworld.common.PitEntity;
@@ -95,8 +94,8 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
         wumpus = new WumpusEntity(position.getX(), position.getY());
 
         //Place Gold - If square does not have a Wumpus, Pit or Hunter already
-		while (squares[position.getX()][position.getY()].isWumpus() ||
-			   squares[position.getX()][position.getY()].isPit() ||
+		while (//squares[position.getX()][position.getY()].isWumpus() ||
+			   //squares[position.getX()][position.getY()].isPit() ||
 			   (position.getX() == hunter.getPosition().getX() &&
 			    position.getY() == hunter.getPosition().getY())) {
 	        position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
@@ -124,62 +123,62 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		int hunterX = hunter.getPosition().getX();
 		int hunterY = hunter.getPosition().getY();
 		
-		boolean endOfGame = squares[hunterX][hunterY].isPit() || 
-							squares[hunterX][hunterY].isWumpus();
-		if (endOfGame) {
-			gameState = GameState.Ended;
-		}
+//		boolean endOfGame = squares[hunterX][hunterY].isPit() || 
+//							squares[hunterX][hunterY].isWumpus();
+//		if (endOfGame) {
+//			gameState = GameState.Ended;
+//		}
 	}
 	
 	public String toString() {
 		String output = "";
-		String delimiter = "-------";
-		
-		while (!(delimiter.length()*6 < size.getX()))
-		
-		for (int x = 0; x < squares.length; ++x) {
-			output += "\n";
-			output += delimiter;
-			output += "\n|";
-			for (int y = 0; y < squares[x].length; ++y) {
-				String cell = "";
-				if (squares[x][y].isGold()) {
-					cell += "G";
-				} else if (squares[x][y].isPit()) {
-					cell += "P";
-				} else if (squares[x][y].isWumpus()) {
-					cell += "W";
-				}
-				
-				if (squares[x][y].getPercepts().breeze) {
-					cell += "b";
-				}
-				
-				if (squares[x][y].getPercepts().stench) {
-					cell += "s";
-				}
-				
-				if (squares[x][y].getPercepts().glitter) {
-					cell += "g";
-				}
-				
-				if (x == hunter.getPosition().getX() &&
-					y == hunter.getPosition().getY()) {
-					cell += "H";
-				}
-				
-				// Pad to 6 chars
-				while (cell.length() < 6) {
-					cell += " ";
-				}
-				
-				output += cell + "|";
-			}
-		}
-		output += "\n";
-		output += delimiter;
-		output += "\n";
-		output += "\n";
+//		String delimiter = "-------";
+//		
+//		while (!(delimiter.length()*6 < size.getX()))
+//		
+//		for (int x = 0; x < squares.length; ++x) {
+//			output += "\n";
+//			output += delimiter;
+//			output += "\n|";
+//			for (int y = 0; y < squares[x].length; ++y) {
+//				String cell = "";
+//				if (squares[x][y].isGold()) {
+//					cell += "G";
+//				} else if (squares[x][y].isPit()) {
+//					cell += "P";
+//				} else if (squares[x][y].isWumpus()) {
+//					cell += "W";
+//				}
+//				
+//				if (squares[x][y].getPercepts().breeze) {
+//					cell += "b";
+//				}
+//				
+//				if (squares[x][y].getPercepts().stench) {
+//					cell += "s";
+//				}
+//				
+//				if (squares[x][y].getPercepts().glitter) {
+//					cell += "g";
+//				}
+//				
+//				if (x == hunter.getPosition().getX() &&
+//					y == hunter.getPosition().getY()) {
+//					cell += "H";
+//				}
+//				
+//				// Pad to 6 chars
+//				while (cell.length() < 6) {
+//					cell += " ";
+//				}
+//				
+//				output += cell + "|";
+//			}
+//		}
+//		output += "\n";
+//		output += delimiter;
+//		output += "\n";
+//		output += "\n";
 		
 		return output;
 	}
@@ -269,6 +268,7 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			//TODO (WPH)
 			break;
 		case Shoot:
+			//Right now, Wumpus will determine whether the arrow will hit him
 			wumpus.arrowWasShot(hunter.getPosition().getX(), hunter.getPosition().getY(), hunter.getPosition().getOrientation());
 			break;
 		case Climb:
@@ -289,7 +289,7 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 	}
 
 	@Override
-	public Hunter getHunter() {
+	public HunterEntity getHunter() {
 		return hunter;
 	}
 }
