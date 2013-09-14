@@ -46,18 +46,6 @@ public class Hunter {
 		return position;
 	}
 	
-//	public void updatePosition(int x, int y) {
-//		position.update(x, y);
-//	}
-//	
-//	public void rotateOrientationClockwise() {
-//		position.rotateOrientationClockwise();
-//	}
-//	
-//	public void rotateOrientationCounterClockwise() {
-//		position.rotateOrientationCounterClockwise();
-//	}
-	
 	public Integer getNumberOfArrows() {
 		return numberOfArrows;
 	}

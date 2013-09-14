@@ -263,28 +263,28 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			{
 			case North:
 				if (hunterY > 0) {
-					hunter.updatePosition(hunterX, hunterY - 1);
+					hunter.getPosition().update(hunterX, hunterY - 1);
 				} else {
 					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			case West:
 				if (hunterX > 0) {
-					hunter.updatePosition(hunterX - 1, hunterY);
+					hunter.getPosition().update(hunterX - 1, hunterY);
 				} else {
 					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			case South:
 				if (hunterY  < size.getY() - 1) {
-					hunter.updatePosition(hunterX, hunterY + 1);
+					hunter.getPosition().update(hunterX, hunterY + 1);
 				} else {
 					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
 				break;
 			case East:
 				if (hunterX < size.getX() - 1) {
-					hunter.updatePosition(hunterX + 1, hunterY);
+					hunter.getPosition().update(hunterX + 1, hunterY);
 				} else {
 					squares[hunterX][hunterY].getPercepts().bump = true;
 				}
@@ -294,10 +294,10 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			}
 			break;
 		case TurnLeft:
-			hunter.rotateOrientationCounterClockwise();
+			hunter.getPosition().rotateOrientationCounterClockwise();
 			break;
 		case TurnRight:
-			hunter.rotateOrientationClockwise();
+			hunter.getPosition().rotateOrientationClockwise();
 			break;
 		case Grab:
 			//TODO (WPH)

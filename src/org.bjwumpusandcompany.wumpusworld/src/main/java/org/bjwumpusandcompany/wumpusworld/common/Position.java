@@ -31,14 +31,35 @@ package org.bjwumpusandcompany.wumpusworld.common;
 *
 */
 public class Position {
-	
-	protected int x;
-	protected int y;
+
+    public enum Orientation {
+    	North, West, South, East;
+    	
+        public Orientation successor() {
+        	return values()[(ordinal() + 1) % values().length];
+        }
+        
+        public Orientation predeccessor() {
+        	// need this ternary statement to make the enums circular from right to left 
+            return values()[(this == North ? East.ordinal() : ordinal() - 1)];
+        }
+    };
+
+	private Orientation orientation;
+	private int 		x;
+	private int 		y;
 	
 	public Position(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.orientation = Orientation.North;
 	}
+	
+	public Position(int x, int y, Orientation orientation) {
+		this.x = x;
+		this.y = y;
+		this.orientation = orientation;
+	}	
 	
 	public int getX() {
 		return x;
@@ -51,5 +72,17 @@ public class Position {
 	public void update(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Orientation getOrientation() {
+		return orientation;
+	}
+	
+	public void rotateOrientationClockwise() {
+		orientation = orientation.predeccessor();
+	}
+	
+	public void rotateOrientationCounterClockwise() {
+		orientation = orientation.successor();
 	}
 }
