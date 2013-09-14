@@ -94,8 +94,9 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
         wumpus = new WumpusEntity(position.getX(), position.getY());
 
         //Place Gold - If square does not have a Wumpus, Pit or Hunter already
-		while (//squares[position.getX()][position.getY()].isWumpus() ||
-			   //squares[position.getX()][position.getY()].isPit() ||
+		while ((wumpus.getPosition().getX() == position.getX() &&
+			    wumpus.getPosition().getY() == position.getY()) ||
+			   isPitLocation(position) ||
 			   (position.getX() == hunter.getPosition().getX() &&
 			    position.getY() == hunter.getPosition().getY())) {
 	        position = new Position(randX.nextInt(size.getY()), randY.nextInt(size.getX()));
@@ -117,6 +118,18 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 	
 	public Size getSize() {
 		return size;
+	}
+	
+	public boolean isPitLocation(Position position) {
+		boolean sameLocation = false;
+		for (EntityInterface entity : staticEntities) {
+			if (entity instanceof PitEntity) {
+				sameLocation = entity.getPosition().getX() == position.getX() &&
+							   entity.getPosition().getY() == position.getY();
+			}
+		}
+		
+		return sameLocation;
 	}
 	
 	public void checkForEndOfGame() {
