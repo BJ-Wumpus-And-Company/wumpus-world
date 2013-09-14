@@ -132,6 +132,18 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		return sameLocation;
 	}
 	
+	public boolean isGoldLocation(Position position) {
+		boolean sameLocation = false;
+		for (EntityInterface entity : staticEntities) {
+			if (entity instanceof GoldEntity) {
+				sameLocation = entity.getPosition().getX() == position.getX() &&
+							   entity.getPosition().getY() == position.getY();
+			}
+		}
+		
+		return sameLocation;
+	}
+	
 	public void checkForEndOfGame() {
 		int hunterX = hunter.getPosition().getX();
 		int hunterY = hunter.getPosition().getY();
@@ -145,53 +157,58 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 	
 	public String toString() {
 		String output = "";
-//		String delimiter = "-------";
-//		
-//		while (!(delimiter.length()*6 < size.getX()))
-//		
-//		for (int x = 0; x < squares.length; ++x) {
-//			output += "\n";
-//			output += delimiter;
-//			output += "\n|";
-//			for (int y = 0; y < squares[x].length; ++y) {
-//				String cell = "";
-//				if (squares[x][y].isGold()) {
-//					cell += "G";
-//				} else if (squares[x][y].isPit()) {
-//					cell += "P";
-//				} else if (squares[x][y].isWumpus()) {
-//					cell += "W";
-//				}
-//				
-//				if (squares[x][y].getPercepts().breeze) {
-//					cell += "b";
-//				}
-//				
-//				if (squares[x][y].getPercepts().stench) {
-//					cell += "s";
-//				}
-//				
-//				if (squares[x][y].getPercepts().glitter) {
-//					cell += "g";
-//				}
-//				
-//				if (x == hunter.getPosition().getX() &&
-//					y == hunter.getPosition().getY()) {
-//					cell += "H";
-//				}
-//				
-//				// Pad to 6 chars
-//				while (cell.length() < 6) {
-//					cell += " ";
-//				}
-//				
-//				output += cell + "|";
-//			}
-//		}
-//		output += "\n";
-//		output += delimiter;
-//		output += "\n";
-//		output += "\n";
+		String unitDel = "-------";
+		String delimiter = "";
+		
+		while (!(delimiter.length()/6 > size.getX())) {
+			delimiter += unitDel;
+		}
+		
+		for (int x = 0; x < squares.length; ++x) {
+			output += "\n";
+			output += delimiter;
+			output += "\n|";
+			for (int y = 0; y < squares[x].length; ++y) {
+				String cell = "";
+				Position pos = new Position(x, y);
+				if (isGoldLocation(pos)) {
+					cell += "G";
+				} else if (isPitLocation(pos)) {
+					cell += "P";
+				} else if (pos.getX() == wumpus.getPosition().getX() &&
+						   pos.getY() == wumpus.getPosition().getY()) {
+					cell += "W";
+				}
+				
+				if (squares[x][y].getPercepts().breeze) {
+					cell += "b";
+				}
+				
+				if (squares[x][y].getPercepts().stench) {
+					cell += "s";
+				}
+				
+				if (squares[x][y].getPercepts().glitter) {
+					cell += "g";
+				}
+				
+				if (x == hunter.getPosition().getX() &&
+					y == hunter.getPosition().getY()) {
+					cell += "H";
+				}
+				
+				// Pad to 6 chars
+				while (cell.length() < 6) {
+					cell += " ";
+				}
+				
+				output += cell + "|";
+			}
+		}
+		output += "\n";
+		output += delimiter;
+		output += "\n";
+		output += "\n";
 		
 		return output;
 	}
