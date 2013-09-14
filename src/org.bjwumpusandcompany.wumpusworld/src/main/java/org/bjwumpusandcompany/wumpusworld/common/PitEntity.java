@@ -9,7 +9,7 @@ public class PitEntity extends Entity {
 	@Override
 	protected void handleSquarePercepts(Square square, Position squarePos, Size size) {
 		if (squarePos.getX() == position.getX() && squarePos.getY() == position.getY())	{
-			square.getPercepts().glitter = square.isGold();
+			square.getPercepts().glitter = true;
 		}
 		
 		if (isNeighbor(squarePos)) {

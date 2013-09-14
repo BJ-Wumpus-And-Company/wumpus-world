@@ -3,7 +3,6 @@ package org.bjwumpusandcompany.wumpusworld.common;
 import org.bjwumpusandcompany.wumpusworld.EntityInterface;
 
 public abstract class Entity implements EntityInterface {
-	//TODO (WPH) : Should position be held here?  What about a position with orientation?
 	protected Position position;
 	
 	Entity(int x, int y) {
@@ -37,8 +36,7 @@ public abstract class Entity implements EntityInterface {
 
 	@Override
 	public Position getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return position;
 	}
 	
 	protected abstract void handleSquarePercepts(Square square, Position squarePos, Size size);

@@ -269,7 +269,7 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			//TODO (WPH)
 			break;
 		case Shoot:
-			//TODO (WPH)
+			wumpus.arrowWasShot(hunter.getPosition().getX(), hunter.getPosition().getY(), hunter.getPosition().getOrientation());
 			break;
 		case Climb:
 			//TODO (WPH)
