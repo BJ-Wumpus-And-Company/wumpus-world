@@ -172,7 +172,7 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			delimiter += unitDel;
 		}
 		
-		for (int x = 0; x < squares.length; ++x) {
+		for (int x = squares.length - 1; x >= 0; --x) {
 			output += "\n";
 			output += delimiter;
 			output += "\n|";
@@ -262,8 +262,8 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			switch (hunter.getPosition().getOrientation())
 			{
 			case North:
-				if (hunterY > 0) {
-					hunter.getPosition().update(hunterX, hunterY - 1);
+				if (hunterY  < size.getY() - 1) {
+					hunter.getPosition().update(hunterX, hunterY + 1);
 				} else {
 					hunter.hitTheWall();
 				}
@@ -276,8 +276,8 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 				}
 				break;
 			case South:
-				if (hunterY  < size.getY() - 1) {
-					hunter.getPosition().update(hunterX, hunterY + 1);
+				if (hunterY > 0) {
+					hunter.getPosition().update(hunterX, hunterY - 1);
 				} else {
 					hunter.hitTheWall();
 				}

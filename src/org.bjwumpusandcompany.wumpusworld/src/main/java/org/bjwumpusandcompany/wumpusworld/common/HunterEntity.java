@@ -19,7 +19,7 @@ public class HunterEntity extends Entity {
 	}
 	
 	private void initialize() {
-		position = new Position(0, 0, Orientation.South);
+		position = new Position(0, 0, Orientation.North);
 		numberOfArrows = 1;		
 		currentPercept = new Percept();
 	}
