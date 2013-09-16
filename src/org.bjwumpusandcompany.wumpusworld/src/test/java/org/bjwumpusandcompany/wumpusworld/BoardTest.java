@@ -164,6 +164,14 @@ public class BoardTest extends TestCase {
     	assertTrue(board.getHunter().getPosition().getY() == 0);
     }
     
+    /**
+     * testHunterForward()
+     * This tests forward motion (and left/right turns) without checking for game state
+     */
+    public void testHunterShoot()
+    {
+    }
+    
 //    /**
 //     * testGameStateEnded()
 //     * Iterate across board with hunter until we find a pit, verify game ends

@@ -12,9 +12,21 @@ public class WumpusEntity extends Entity {
 	}
 
 	public void arrowWasShot(int x, int y, Orientation direction) {
-		//TODO (WPH) : Implement scream logic here:
-		//             if in same row/col and direction is toward me
-		screamFlag = true;
+		screamFlag = false;
+		
+		if (x == position.getX()) {
+			if (y > position.getY() && direction == Orientation.South) {
+				screamFlag = true;
+			} else if (y < position.getY() && direction == Orientation.North) {
+				screamFlag = true;
+			}
+		} else if (y == position.getY()) {
+			if (x > position.getX() && direction == Orientation.West) {
+				screamFlag = true;				
+			} else if (x < position.getX() && direction == Orientation.East) {
+				screamFlag = true;				
+			}
+		}
 	}
 	
 	@Override
