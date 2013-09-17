@@ -34,13 +34,13 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-public class BoardTest extends TestCase {
+public class ModelTest extends TestCase {
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public BoardTest(String testName)
+    public ModelTest(String testName)
     {
         super(testName);
     }
@@ -50,7 +50,7 @@ public class BoardTest extends TestCase {
      */
     public static Test suite()
     {
-        return new TestSuite(BoardTest.class);
+        return new TestSuite(ModelTest.class);
     }
 
     /**
