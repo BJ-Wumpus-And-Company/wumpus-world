@@ -315,6 +315,9 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		
 		checkForEndOfGame();
 
+		wumpus.updateWorld(squares);
+		hunter.updateWorld(squares);
+		
 		notifyObservers(this);
 	}
 

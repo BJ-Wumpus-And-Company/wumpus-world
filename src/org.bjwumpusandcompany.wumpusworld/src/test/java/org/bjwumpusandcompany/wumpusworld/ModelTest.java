@@ -272,4 +272,38 @@ public class ModelTest extends TestCase {
     	
     	assertTrue(board.getGameState() == GameState.Started);
     }
+    
+    /**
+     * testHunterForward()
+     * This tests forward motion (and left/right turns) without checking for game state
+     */
+    public void testHunterBump()
+    {
+		System.out.println("Running: testHunterBump()");
+    	Model board = new Model(new Size(4, 4, 1));
+
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.North);
+
+    	board.setHunterAction(Action.TurnLeft);
+    	assertTrue(board.getHunter().getPosition().getOrientation() == Orientation.West);
+    	assertTrue(board.getHunter().getPosition().getX() == 0);
+    	assertTrue(board.getHunter().getPosition().getY() == 0);
+    	
+    	//Check West Wall
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getCurrentPercept().bump);
+
+    	board.setHunterAction(Action.TurnRight);
+    	assertTrue(!board.getCurrentPercept().bump);
+
+    	//Check North Wall
+    	board.setHunterAction(Action.Forward);
+    	board.setHunterAction(Action.Forward);
+    	board.setHunterAction(Action.Forward);
+    	board.setHunterAction(Action.Forward);
+    	assertTrue(board.getCurrentPercept().bump);
+    	
+    }
 }
