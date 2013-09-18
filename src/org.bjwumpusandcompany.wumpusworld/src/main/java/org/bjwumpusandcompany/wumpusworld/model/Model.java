@@ -300,7 +300,9 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			hunter.getPosition().rotateOrientationClockwise();
 			break;
 		case Grab:
-			//TODO (WPH)
+			//TODO (WPH) : How do we implement this?  The Gold might need to be a dynamic
+//			               entity.  And we may need to rethink how dynamic entities work.
+//			               Maybe a DynamicEntityInterface?
 			break;
 		case Shoot:
 			//Right now, Wumpus will determine whether the arrow will hit him
