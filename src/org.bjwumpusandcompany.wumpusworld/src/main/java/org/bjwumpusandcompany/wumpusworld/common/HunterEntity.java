@@ -5,7 +5,6 @@ import org.bjwumpusandcompany.wumpusworld.common.Position.Orientation;
 public class HunterEntity extends Entity {
 	
 	private Integer  numberOfArrows;
-	private Percept  currentPercept;
 	private boolean  bumpFlag;
 	
 	public HunterEntity() {
@@ -19,9 +18,9 @@ public class HunterEntity extends Entity {
 	}
 	
 	private void initialize() {
-		position = new Position(0, 0, Orientation.North);
-		numberOfArrows = 1;		
-		currentPercept = new Percept();
+		position       = new Position(0, 0, Orientation.North);
+		numberOfArrows = 1;
+		bumpFlag       = false;
 	}
 	
 	public Integer getNumberOfArrows() {
@@ -32,10 +31,6 @@ public class HunterEntity extends Entity {
 		if (numberOfArrows > 0) { 
 			numberOfArrows--;
 		}
-	}
-	
-	public Percept getCurrentPercept() {
-		return currentPercept;
 	}
 	
 	public void hitTheWall() {
