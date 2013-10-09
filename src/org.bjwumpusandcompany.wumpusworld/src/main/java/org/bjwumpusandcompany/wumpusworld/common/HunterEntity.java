@@ -6,6 +6,7 @@ public class HunterEntity extends Entity {
 	
 	private Integer  numberOfArrows;
 	private boolean  bumpFlag;
+	private boolean  foundGold;
 	
 	public HunterEntity() {
 		super();
@@ -21,6 +22,11 @@ public class HunterEntity extends Entity {
 		position       = new Position(0, 0, Orientation.North);
 		numberOfArrows = 1;
 		bumpFlag       = false;
+		foundGold      = false;
+	}
+	
+	public void foundGold() {
+		foundGold = true;
 	}
 	
 	public Integer getNumberOfArrows() {

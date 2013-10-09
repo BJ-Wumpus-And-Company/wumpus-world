@@ -56,9 +56,11 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 	private WumpusEntity wumpus;
 	private GameState gameState;
 	private ArrayList<EntityInterface> staticEntities;
+	private boolean endOfGame;
 	
 	public Model(Size size) {
 		this.size = size;
+		endOfGame = false;
 		
 		staticEntities  = new ArrayList<EntityInterface>();
 		hunter = new HunterEntity();
@@ -112,8 +114,6 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		while (it.hasNext()) {
 			it.next().updateWorld(squares);
 		}
-		
-		checkForEndOfGame();
 	}
 	
 	public Size getSize() {
@@ -124,6 +124,22 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		boolean sameLocation = false;
 		for (EntityInterface entity : staticEntities) {
 			if (entity instanceof PitEntity) {
+				sameLocation = entity.getPosition().getX() == position.getX() &&
+							   entity.getPosition().getY() == position.getY();
+				
+				if (sameLocation) {
+					break;
+				}
+			}
+		}
+		
+		return sameLocation;
+	}
+	
+	public boolean isWumpusLocation(Position position) {
+		boolean sameLocation = false;
+		for (EntityInterface entity : staticEntities) {
+			if (entity instanceof WumpusEntity) {
 				sameLocation = entity.getPosition().getX() == position.getX() &&
 							   entity.getPosition().getY() == position.getY();
 				
@@ -152,15 +168,13 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		return sameLocation;
 	}
 	
-	public void checkForEndOfGame() {
-		int hunterX = hunter.getPosition().getX();
-		int hunterY = hunter.getPosition().getY();
-		
-//		boolean endOfGame = squares[hunterX][hunterY].isPit() || 
-//							squares[hunterX][hunterY].isWumpus();
-//		if (endOfGame) {
-//			gameState = GameState.Ended;
-//		}
+	private void removeGold() {
+		for (EntityInterface entity : staticEntities) {
+			if (entity instanceof GoldEntity) {
+				((GoldEntity)entity).deactivate();
+				entity.updateWorld(squares);
+			}
+		}
 	}
 	
 	public String toString() {
@@ -168,7 +182,7 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 		String unitDel = "-------";
 		String delimiter = "";
 		
-		while (!(delimiter.length()/6 > size.getX())) {
+		while (!(delimiter.length()/6 > size.getX() - 1)) {
 			delimiter += unitDel;
 		}
 		
@@ -300,25 +314,32 @@ public class Model extends AbstractSubject<ModelInterface> implements ModelInter
 			hunter.getPosition().rotateOrientationClockwise();
 			break;
 		case Grab:
-			//TODO (WPH) : How do we implement this?  The Gold might need to be a dynamic
-//			               entity.  And we may need to rethink how dynamic entities work.
-//			               Maybe a DynamicEntityInterface?
+			if (isGoldLocation(hunter.getPosition())) {
+				removeGold();
+				hunter.foundGold();
+			}
 			break;
 		case Shoot:
 			//Right now, Wumpus will determine whether the arrow will hit him
 			wumpus.arrowWasShot(hunter.getPosition().getX(), hunter.getPosition().getY(), hunter.getPosition().getOrientation());
 			break;
 		case Climb:
-			//TODO (WPH)
+			endOfGame = hunter.getPosition().getX() == 1 && hunter.getPosition().getY() == 1;
 			break;
 		default:
 			throw new IllegalArgumentException("setHunterAction: Unknown Action");
 		}
 		
-		checkForEndOfGame();
+		if (isWumpusLocation(hunter.getPosition()) || isPitLocation(hunter.getPosition())) {
+			endOfGame = true;
+		}
 
 		wumpus.updateWorld(squares);
 		hunter.updateWorld(squares);
+		
+		if (endOfGame) {
+			gameState = GameState.Ended;
+		}
 		
 		notifyObservers(this);
 	}

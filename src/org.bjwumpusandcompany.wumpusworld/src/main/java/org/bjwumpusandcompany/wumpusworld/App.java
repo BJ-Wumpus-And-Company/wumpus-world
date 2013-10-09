@@ -28,14 +28,14 @@ import org.bjwumpusandcompany.wumpusworld.common.Size;
 import org.bjwumpusandcompany.wumpusworld.model.Model;
 
 /**
- * Hello world!
+ * Wumpus World!
  *
  */
 public class App 
 {
     public static void main(String[] args)
     {
-    	Model board = new Model(new Size(8, 8, 1));
+    	Model board = new Model(new Size(4, 4, 1));
         System.out.println(board.toString());
     }
 }
